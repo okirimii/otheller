@@ -82,3 +82,11 @@ The game logic is organized in `otheller/core/` with clear separation of concern
 ## Testing
 
 Currently no test framework is configured. When adding tests, follow the existing project structure and code quality standards.
+
+## Language Guidelines
+
+- **Language Policy**:
+  - Respond in Japanese when communicating with users
+  - Internal thinking can be done in English
+  - Strictly use Japanese and English languages
+  - Obtain user permission before using any other language
