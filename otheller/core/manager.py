@@ -21,16 +21,7 @@ class GameManager:
         placement: Placement,
         state: BoardState,
     ) -> None:
-        """
-        Initialize the game manager.
-
-        Parameters
-        ----------
-        state : BoardState
-            The board state object to manage
-        placement : Placement
-            The placement validation handler
-        """
+        """Initialize the game manager."""
         # The black player goes first
         self._current_player: int = BLACK_PLAYER
         self._placement = placement
