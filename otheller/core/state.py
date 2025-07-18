@@ -22,8 +22,8 @@ class BoardState:
 
     def __init__(self) -> None:
         """Initialize the board state with the standard Othello starting position."""
-        self._board: list[list[int]] = self._initialize_board()
         self._size: int = BOARD_SIZE
+        self._board: list[list[int]] = self._initialize_board()
 
     def _initialize_board(self) -> list[list[int]]:
         """Create the initial board state.
