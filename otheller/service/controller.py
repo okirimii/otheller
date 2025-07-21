@@ -1,10 +1,3 @@
-"""
-Unified game controller class.
-
-Integrates responsibilities from existing GameController, VsCPUMode,
-and HighlightTracker classes.
-"""
-
 from typing import Any
 
 from otheller.core.board import Board
