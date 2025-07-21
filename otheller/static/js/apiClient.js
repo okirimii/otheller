@@ -5,14 +5,14 @@
 
 class ApiClient {
   constructor() {
-    this.baseUrl = "";
+    this.baseUrl = '';
   }
 
   // CPU vs CPU game
   async uploadCpuVsCpu(strategyFiles) {
     try {
       const response = await fetch(`${this.baseUrl}/cpu-vs-cpu`, {
-        method: "POST",
+        method: 'POST',
         body: strategyFiles,
       });
 
@@ -23,7 +23,7 @@ class ApiClient {
       const result = await response.json();
       return result;
     } catch (error) {
-      console.error("Error uploading CPU strategies:", error);
+      console.error('Error uploading CPU strategies:', error);
       throw error;
     }
   }
@@ -32,7 +32,7 @@ class ApiClient {
   async uploadPlayerVsCpu(strategyFile) {
     try {
       const response = await fetch(`${this.baseUrl}/player-vs-cpu`, {
-        method: "POST",
+        method: 'POST',
         body: strategyFile,
       });
 
@@ -43,7 +43,7 @@ class ApiClient {
       const result = await response.json();
       return result;
     } catch (error) {
-      console.error("Error uploading player strategy:", error);
+      console.error('Error uploading player strategy:', error);
       throw error;
     }
   }
@@ -53,10 +53,10 @@ class ApiClient {
     try {
       const requestBody = playerMove ? { player_move: playerMove } : {};
 
-      const response = await fetch("/next-move", {
-        method: "POST",
+      const response = await fetch('/next-move', {
+        method: 'POST',
         headers: {
-          "Content-Type": "application/json",
+          'Content-Type': 'application/json',
         },
         body: JSON.stringify(requestBody),
       });
@@ -68,7 +68,7 @@ class ApiClient {
       const moveResult = await response.json();
       return moveResult;
     } catch (error) {
-      console.error("Next move error:", error);
+      console.error('Next move error:', error);
       throw new Error(`Failed to get next move: ${error.message}`);
     }
   }
@@ -76,10 +76,10 @@ class ApiClient {
   // Reset game
   async resetGame() {
     try {
-      const response = await fetch("/reset-game", {
-        method: "POST",
+      const response = await fetch('/reset-game', {
+        method: 'POST',
         headers: {
-          "Content-Type": "application/json",
+          'Content-Type': 'application/json',
         },
       });
 
@@ -90,7 +90,7 @@ class ApiClient {
       const resetResult = await response.json();
       return resetResult;
     } catch (error) {
-      console.error("Reset game error:", error);
+      console.error('Reset game error:', error);
       throw new Error(`Failed to reset game: ${error.message}`);
     }
   }
