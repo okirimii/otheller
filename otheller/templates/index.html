@@ -30,7 +30,7 @@
                 <div class="player-label black-player-label">
                   ● プレイヤー1（黒番・先手）
                 </div>
-                <input type="file" name="black_player_file" id="blackPlayerFile" class="file-input" accept=".py" />
+                <input type="file" name="blackPlayer" id="blackPlayerFile" class="file-input" accept=".py" />
                 <div id="blackPlayerStatus" class="file-status file-empty">ファイル未選択</div>
               </div>
 
@@ -38,11 +38,12 @@
                 <div class="player-label white-player-label">
                   ○ プレイヤー2（白番・後手）
                 </div>
-                <input type="file" name="white_player_file" id="whitePlayerFile" class="file-input" accept=".py" />
+                <input type="file" name="whitePlayer" id="whitePlayerFile" class="file-input" accept=".py" />
                 <div id="whitePlayerStatus" class="file-status file-empty">ファイル未選択</div>
               </div>
             </div>
           </form>
+          <button class="button" id="loadStrategiesBtn">戦略読み込み・対戦開始</button>
         </div>
 
         <div id="playerVsCpuMode" style="display: none;">
@@ -64,7 +65,7 @@
                   <div class="player-label cpu-label">
                     CPU戦略ファイル
                   </div>
-                  <input type="file" name="cpu_file" id="cpuStrategyFile" class="file-input" accept=".py" />
+                  <input type="file" name="cpuStrategy" id="cpuStrategyFile" class="file-input" accept=".py">
                   <div id="cpuStrategyStatus" class="file-status file-empty">ファイル未選択</div>
                 </div>
               </div>
@@ -113,6 +114,7 @@
             <button class="button reset-button">新しい対戦</button>
           </div>
 
+          <div class="move-log" id="moveLog"></div>
         </div>
       </div>
     </div>
