@@ -1,21 +1,16 @@
-/**
- * Game State Management Module
- * Handles game state management
- */
-
 class GameState {
   constructor() {
     this.state = null;
     this.isGameEnd = false;
-    this.isPlayerVsCpu = false;
+    this.gameMode = 'cpu_vs_cpu'; // 'cpu_vs_cpu' | 'player_vs_cpu'
     this.playerNumber = 1;
     this.waitingForPlayer = false;
     this.autoInterval = null;
   }
 
-  // Set game state
   setState(newState) {
     this.state = newState;
+    this.isGameEnd = newState?.is_game_over || false;
   }
 
   // Get game state
@@ -33,21 +28,27 @@ class GameState {
     return this.isGameEnd;
   }
 
-  // Set player vs CPU mode
-  setPlayerVsCpuMode(isPlayer, playerNumber = 1) {
-    this.isPlayerVsCpu = isPlayer;
+  /**
+   * プレイヤー vs CPUモードを設定
+   */
+  setPlayerVsCpuMode(playerNumber = 1) {
+    this.gameMode = 'player_vs_cpu';
     this.playerNumber = playerNumber;
   }
 
-  // Set CPU vs CPU mode
+  /**
+   * CPU vs CPUモードを設定
+   */
   setCpuVsCpuMode() {
-    this.isPlayerVsCpu = false;
+    this.gameMode = 'cpu_vs_cpu';
     this.playerNumber = 1;
   }
 
-  // Check if player vs CPU mode
+  /**
+   * プレイヤー vs CPUモードかどうか判定
+   */
   isPlayerVsCpuMode() {
-    return this.isPlayerVsCpu;
+    return this.gameMode === 'player_vs_cpu';
   }
 
   // Get player number
@@ -65,15 +66,12 @@ class GameState {
     return this.waitingForPlayer;
   }
 
-  // Check if move is valid
-  isValidMove(row, col) {
-    if (!this.state || !this.state.valid_moves) {
-      return false;
-    }
-
-    // valid_moves is [[moveRow, moveCol], ...] format
-    // moveRow, moveCol is the destination row and column coordinates
-    return this.state.valid_moves.some(([moveRow, moveCol]) => moveRow === row && moveCol === col);
+  /**
+   * 有効な手の位置かどうか判定
+   */
+  isValidPosition(row, col) {
+    if (!this.state?.valid_moves) return false;
+    return this.state.valid_moves.some(([r, c]) => r === row && c === col);
   }
 
   // Set auto interval
@@ -94,17 +92,19 @@ class GameState {
     }
   }
 
-  // Check if current player is human
+  /**
+   * 現在のプレイヤーが人間かどうか判定
+   */
   isCurrentPlayerHuman() {
-    return this.isPlayerVsCpu && this.state && this.state.current_player === this.playerNumber;
+    return this.gameMode === 'player_vs_cpu' && this.state?.current_player === this.playerNumber;
   }
 
-  // Reset game state
+  /**
+   * ゲーム状態をリセット
+   */
   reset() {
     this.state = null;
     this.isGameEnd = false;
-    this.isPlayerVsCpu = false;
-    this.playerNumber = 1;
     this.waitingForPlayer = false;
     this.clearAutoInterval();
   }

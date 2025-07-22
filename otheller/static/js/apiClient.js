@@ -1,8 +1,3 @@
-/**
- * API client module
- * Handles server communication
- */
-
 class ApiClient {
   constructor() {
     this.baseUrl = '';
@@ -11,7 +6,7 @@ class ApiClient {
   // CPU vs CPU game
   async uploadCpuVsCpu(strategyFiles) {
     try {
-      const response = await fetch(`${this.baseUrl}/cpu-vs-cpu`, {
+      const response = await fetch(`${this.baseUrl}/upload-strategies`, {
         method: 'POST',
         body: strategyFiles,
       });
@@ -31,7 +26,7 @@ class ApiClient {
   // Player vs CPU game
   async uploadPlayerVsCpu(strategyFile) {
     try {
-      const response = await fetch(`${this.baseUrl}/player-vs-cpu`, {
+      const response = await fetch(`${this.baseUrl}/upload-player-vs-cpu`, {
         method: 'POST',
         body: strategyFile,
       });
