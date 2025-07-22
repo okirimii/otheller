@@ -235,7 +235,7 @@ class GameController:
         if self.game_state.is_player_turn(current_player):
             if player_move is None:
                 # Waiting for player input
-                self.game_state.set_waiting_for_player(True)  # type: ignore
+                self.game_state.set_waiting_for_player(waiting=True)
                 self.save_state()
                 return self.get_current_state()
 
@@ -243,15 +243,20 @@ class GameController:
             row, col = player_move
             if self.make_move_with_tracking(row, col, current_player):
                 self.game_state.move_count += 1
-                self.game_state.set_waiting_for_player(False)  # type: ignore
+                self.game_state.set_waiting_for_player(waiting=False)
                 self.save_state()
                 return self.get_current_state()
             return None
 
-        # Execute AI/CPU move
+        # Execute CPU move
         strategy = self.game_state.get_current_strategy(current_player)
 
         try:
+            # Check if strategy is available
+            if strategy is None:
+                # Strategy not loaded, cannot proceed with CPU move
+                return None
+
             # Check valid moves
             valid_moves_tuples = self.board.get_valid_moves(current_player)
             valid_moves = [[row, col] for row, col in valid_moves_tuples]
