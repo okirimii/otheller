@@ -31,7 +31,7 @@ uv sync
 ```bash
 python -m venv .venv
 
-. .venv/bin/acvibate
+. .venv/bin/activate
 
 pip install -r requirements.lock
 ```
@@ -43,6 +43,9 @@ flask --app otheller run
 ```
 
 ブラウザで `http://127.0.0.1:5000` にアクセスしてください。
+
+> [!WARNING]
+> 本アプリケーションはアップロードされたPythonファイルをローカル環境で実行します。信頼できるファイルのみをアップロードしてください。悪意のあるコードを含むファイルをアップロードすると、コンピューターに損害を与える可能性があります。
 
 ## 戦略アルゴリズム実装
 
