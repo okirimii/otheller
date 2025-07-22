@@ -40,6 +40,7 @@ ignore = [
     "INP001", # Allow missing __init__.py files.
     "BLE001", # Allow catch all exceptions.
     "PGH003", # Allow `type: ignore`.
+    "TRY300", # Allow `try` without `except`.
 ]
 
 # Allow fix for all enabled rules (when `--fix`) is provided.
